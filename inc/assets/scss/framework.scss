@@ -1,0 +1,259 @@
+
+.module__framework-table {
+	padding-bottom: 0;
+
+	@include media-breakpoint-up(md) {
+		padding-bottom: 5rem;
+	}
+
+	@include media-breakpoint-up(lg) {
+		padding-bottom: 9.375rem;
+	}
+
+	.framework-table__arrows {
+		width: 100%;
+		display: flex;
+		flex-basis: 100%;
+		justify-content: center;
+		@media  screen and (max-width: $screen-sm-max){
+			padding-bottom: 25px;
+		}
+
+		
+		.slick-next {
+			//left: auto;
+			right: -14px;
+
+			top: auto;
+			position: relative;
+		}
+		.slick-prev{
+			//left: auto;
+			left: -14px;
+			top: auto;
+			position: relative;
+		}
+
+		.slick-prev {
+
+			&:before {
+				content: '';
+				width: 1.25rem;
+				height: 1.25rem;
+				background-image: url(../../images/arrow-left1.svg);
+				display: block;
+				background-repeat: no-repeat;
+			}
+		}
+
+		.slick-next {
+
+			&:before {
+				content: '';
+				width: 1.25rem;
+				height: 1.25rem;
+				background-image: url(../../images/arrow-right1.svg);
+				display: block;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	.framework-table__column {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		margin-bottom: $grid-gutter-width;
+
+		&__header,
+		&__rows {
+			width: 100%;
+			flex-basis: 100%;
+		}
+
+		&__header {
+			display: block;
+
+			@each $color, $value in $theme-colors {
+				&.bg-#{$color} {
+					background: rgba($value, 0.2) !important; // !important to override Bootstrap
+				}
+			}
+
+			&__image {
+				overflow: hidden;
+				transition: $transition-base;
+
+				img {
+					width: 100%;
+					transition: $transition-base;
+				}
+			}
+
+			&__copy {
+				padding: $grid-gutter-width;
+
+				h2,
+				.h5 {
+					text-transform: uppercase;
+					font-family: "intelo-bold";
+					color: black;
+					font-size: 1.125rem;
+					padding-bottom: 0px;
+				}
+
+				@media screen and (max-width: $screen-sm-max){
+					h2
+					 {
+						//text-transform: uppercase;
+						font-size: 1.125rem;
+					}
+				}
+
+				p {
+					font-weight: $font-weight-semibold;
+					font-size: 16px;
+					color: black;
+				}
+			}
+
+			@include hover-focus-active {
+				color: $primary;
+
+				* {
+					color: $primary;
+				}
+
+				img {
+					transform: scale(1.1);
+				}
+			}
+		}
+
+		&__rows {
+			display: flex;
+			flex-wrap: wrap;
+			flex: 1 0 auto; // IE fix
+
+			&__list {
+				padding: 0;
+				width: 100%;
+				flex-basis: 100%;
+
+				// Calculate even heights based on the number of elements
+				&--count {
+					@for $i from 1 through 8 {
+						&-#{$i} {
+							li {
+								height: (100/$i) * 1%;
+							}
+						}
+					}
+				}
+
+				li {
+					list-style: none;
+					padding: 0;
+					background: $lighter;
+					border-bottom: 2px solid $white;
+					display: flex;
+					width: 100%;
+					flex-basis: 100%;
+					align-content: center;
+					align-items: center;
+					position: relative;
+
+					&.full-height {
+						height: 100%;
+					}
+
+					.row-label {
+						font-family: $headings-font-family;
+						text-transform: uppercase;
+						font-weight: $font-weight-bold;
+						font-size: fontsize(22);
+						line-height: 1;
+						position: absolute;
+						padding: 0 $grid-gutter-width/2;
+						top: 0;
+						bottom: 0;
+						width: rem(165);
+						left: -(rem(165));
+						align-items: center;
+						opacity: 0;
+						transition: $transition-base;
+
+						@each $color, $value in $theme-colors {
+							&.hover-bg-#{$color} {
+								&.hovered {
+									opacity: 1;
+									background: $value;
+									color: color-yiq($value);
+								}
+							}
+						}
+					}
+
+					a {
+						display: flex;
+						width: 100%;
+						height: 100%;
+						padding: $grid-gutter-width;
+						align-items: center;
+						justify-content: flex-start;
+						position: relative;
+						transition: all .2s ease-in-out;
+						color: black;
+
+						@include hover-focus { // some defaults for if no colour is set
+							color: currentColor;
+							background: $light;
+						}
+
+						&:after {
+							content: '';
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							right: -($grid-gutter-width);
+							width: $grid-gutter-width;
+							transition: $transition-base;
+						}
+
+						@each $color, $value in $theme-colors {
+							&.hover-bg-#{$color} {
+
+								&:hover, &:active,
+								&.hovered {
+									background: $value;
+									color: color-yiq($value);
+
+									&:before,
+									&:after {
+										background: $value;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&:last-of-type {
+
+			.framework-table__column__rows__list {
+				li {
+					a {
+						&:after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	a{
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,49 @@
+/*!
+ * Bootstrap v4.0.0 (https://getbootstrap.com)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+// Functions and variables
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "bootstrap-variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+
+//@import "../node_modules/bootstrap/scss/carousel";
+
+
+// Add an extra grid breakpoint
+/*@media (max-width: $screen-xxs-max) {
+	@include make-grid(xxs);
+}*/
+
+// Create grow and shrink flex column classes for each breakpoint
+@each $breakpoint, $value in $grid-breakpoints {
+	/*.col-#{$breakpoint}-grow {
+		@include media-breakpoint-up(#{$breakpoint}) {
+			flex-grow: 1;
+			flex-shrink: 0;
+			flex-basis: initial;
+			width: auto;
+		}
+	}
+
+	.col-#{$breakpoint}-shrink {
+		@include media-breakpoint-up(#{$breakpoint}) {
+			flex-grow: 0;
+			flex-shrink: 1;
+			flex-basis: initial;
+			width: auto;
+		}
+	}*/
+}
+
+// Background colour classes
+@each $color, $value in $theme-colors {
+	/*.bg-#{$color} {
+		background: $value;
+	}*/
+}
